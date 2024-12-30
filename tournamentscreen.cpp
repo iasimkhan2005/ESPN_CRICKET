@@ -58,16 +58,23 @@ void tournamentScreen::showSchedule() {
     addTeam("Bangladesh");
     addTeam("South Africa");
 
+//Group A
+    addMatch("Pakistan", "New Zealand", "19/02/2025, 14:00", "National Stadium, Karachi");
+    addMatch("Pakistan", "India", "23/02/2025, 14:00", "Dubai International Cricket Stadium");
+    addMatch("Pakistan", "Bangladesh", "27/02/2025, 14:00", "Gaddafi Stadium, Lahore");
+    addMatch("India", "New Zealand", "25/02/2025, 14:00", "Sharjah Cricket Stadium");
+    addMatch("India", "Bangladesh", "27/02/2025, 14:00", "Gaddafi Stadium, Lahore");
+    addMatch("New Zealand", "Bangladesh", "29/02/2025, 14:00", "Sheikh Zayed Cricket Stadium, Abu Dhabi");
 
-    //     // Group A
-    addMatch("Pakistan", "New Zealand", "19/2/2025, 14:00", "National Stadium, Karachi");
-    addMatch("Pakistan", "India", "23/2/2025, 14:00", "Dubai International Cricket Stadium");
-    addMatch("Pakistan", "Bangladesh", "27/2/2025, 14:00", "Gaddafi Stadium, Lahore");
-    addMatch("India", "Bangladesh", "27/2/2025, 14:00", "Gaddafi Stadium, Lahore");
-    // Group B
-    addMatch("England", "Afghanistan", "21/2/2025, 14:00", "National Stadium, Karachi");
-    addMatch("England", "Australia", "22/2/2025, 14:00", "Gaddafi Stadium, Lahore");
-    addMatch("England", "South Africa", "26/2/2025, 14:00", "Rawalpindi Cricket Stadium");
+//Group B
+    addMatch("England", "Afghanistan", "21/02/2025, 14:00", "National Stadium, Karachi");
+    addMatch("England", "Australia", "22/02/2025, 14:00", "Gaddafi Stadium, Lahore");
+    addMatch("England", "South Africa", "26/02/2025, 14:00", "Rawalpindi Cricket Stadium");
+    addMatch("Australia", "Afghanistan", "24/02/2025, 14:00", "Dubai International Cricket Stadium");
+    addMatch("Australia", "South Africa", "28/02/2025, 14:00", "Sharjah Cricket Stadium");
+    addMatch("Afghanistan", "South Africa", "21/02/2025, 14:00", "National Stadium, Karachi");
+
+
     this->close();
 
     // Pass the current instance of tournamentScreen
