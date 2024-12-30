@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -14,10 +18,22 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void onTournamentButtonClicked();
+   void showTournamentsScreen();
+    //void showICCRankingScreen();
+    //void showPlayerCardsScreen();
+    //void showMatchScheduleScreen();
 
 private:
     Ui::MainWindow *ui;
+    QGraphicsScene *mainScene;
+   // QGraphicsScene *tournamentScene;
+    QGraphicsScene *dataScene;
+     QGraphicsScene *tournamentScene;
 };
+
 #endif // MAINWINDOW_H

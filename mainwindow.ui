@@ -114,7 +114,7 @@ background-color: rgb(163, 163, 163);</string>
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="tournament_btn">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -185,8 +185,19 @@ background-color: rgb(134, 134, 134);</string>
      </property>
     </widget>
    </widget>
+   <widget class="QGraphicsView" name="view">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>80</y>
+      <width>581</width>
+      <height>301</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>UpperFrame_2</zorder>
    <zorder>UpperFrame</zorder>
+   <zorder>view</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
