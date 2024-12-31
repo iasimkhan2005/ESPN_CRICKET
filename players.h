@@ -2,6 +2,8 @@
 #define PLAYERS_H
 
 #include <QDialog>
+#include <QMap>
+#include <QStringList>
 
 namespace Ui {
 class Players;
@@ -14,6 +16,9 @@ class Players : public QDialog
 public:
     explicit Players(QWidget *parent = nullptr);
     ~Players();
+
+private slots:
+    void onTeamSelected(int index);
 
 private:
     Ui::Players *ui;
