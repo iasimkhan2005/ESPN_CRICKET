@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         tournamentscreen.h tournamentscreen.cpp tournamentscreen.ui
         championtrophy.h championtrophy.cpp championtrophy.ui
+        players.h players.cpp players.ui
     )
 else()
     if(ANDROID)

@@ -150,7 +150,7 @@ background-color: rgb(134, 134, 134);
       <string>ICC Ranking</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="player_btn">
      <property name="geometry">
       <rect>
        <x>0</x>

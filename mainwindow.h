@@ -25,7 +25,7 @@ private slots:
     void onTournamentButtonClicked();
    void showTournamentsScreen();
     //void showICCRankingScreen();
-    //void showPlayerCardsScreen();
+    void showPlayerCardsScreen();
     //void showMatchScheduleScreen();
 
 private:
