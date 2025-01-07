@@ -10,16 +10,14 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find the required Qt modules
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets UiTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets UiTools)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets UiTools Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets UiTools Network)
 
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-
-
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -43,7 +41,11 @@ else()
 endif()
 
 # Link the required Qt libraries
-target_link_libraries(ESPN_Cricket PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::UiTools)
+target_link_libraries(ESPN_Cricket PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::UiTools
+    Qt${QT_VERSION_MAJOR}::Network
+)
 
 # Set bundle and executable properties
 set_target_properties(ESPN_Cricket PROPERTIES

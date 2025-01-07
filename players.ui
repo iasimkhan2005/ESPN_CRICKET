@@ -6,48 +6,52 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>666</width>
-    <height>373</height>
+    <width>721</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Player Cards</string>
   </property>
-  <widget class="QComboBox" name="players_dropdown">
+  <widget class="QComboBox" name="player_dropdown">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>300</x>
      <y>20</y>
-     <width>131</width>
-     <height>24</height>
+     <width>121</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
    </property>
    <property name="placeholderText">
-    <string>--- Select Team ---</string>
+    <string>Select Team</string>
    </property>
-   <item>
-    <property name="text">
-     <string>--- Select Team ---</string>
-    </property>
-   </item>
   </widget>
-  <widget class="QLabel" name="players_label">
+  <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>60</y>
-     <width>521</width>
-     <height>291</height>
+     <x>20</x>
+     <y>80</y>
+     <width>681</width>
+     <height>271</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-   </property>
-   <property name="margin">
+   <property name="columnCount">
     <number>5</number>
+   </property>
+   <property name="horizontalHeaderLabels">
+    <stringlist>
+     <string>Name</string>
+     <string>Role</string>
+     <string>Batting Style</string>
+     <string>Bowling Style</string>
+     <string>Date of Birth</string>
+    </stringlist>
    </property>
   </widget>
  </widget>

@@ -1,61 +1,114 @@
 #include "players.h"
 #include "ui_players.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
 
-Players::Players(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::Players)
+Players::Players(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Players),
+    networkManager(new QNetworkAccessManager(this))
 {
     ui->setupUi(this);
+    populateCountries();
 
-    // Populate dropdown with team names
-    ui->players_dropdown->addItem("--- Select Team ---");
-    ui->players_dropdown->addItem("Pakistan");
-    ui->players_dropdown->addItem("India");
-    ui->players_dropdown->addItem("Bangladesh");
-    ui->players_dropdown->addItem("England");
-    ui->players_dropdown->addItem("New Zealand");
-    ui->players_dropdown->addItem("Australia");
-    ui->players_dropdown->addItem("South Africa");
-    ui->players_dropdown->addItem("Sri Lanka");
-    ui->players_dropdown->addItem("West Indies");
+    connect(ui->player_dropdown, &QComboBox::currentTextChanged, this, &Players::onCountrySelected);
+    connect(networkManager, &QNetworkAccessManager::finished, this, &Players::handlePlayerDataResponse);
+}
 
-    // Connect the signal for dropdown selection change to a slot
-    connect(ui->players_dropdown, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Players::onTeamSelected);
+void Players::populateCountries()
+{
+    QStringList countries = {
+        "Pakistan", "India", "Australia", "England",
+        "South Africa", "New Zealand", "Bangladesh",
+        "Afghanistan", "Sri Lanka", "West Indies"
+    };
+
+    ui->player_dropdown->addItems(countries);
+}
+
+void Players::onCountrySelected(const QString& country)
+{
+    QString url = QString("https://api.cricapi.com/v1/players?apikey=593bc6a5-36b3-44f1-bd5a-b53770645324&offset=0");
+    QNetworkRequest request{QUrl(url)};
+    networkManager->get(request);
+    ui->player_dropdown->setEnabled(false); // Disable while fetching
+}
+
+void Players::handlePlayerDataResponse(QNetworkReply* reply)
+{
+    if (reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray response = reply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+        QJsonObject jsonObj = jsonDoc.object();
+
+        if (jsonObj["status"].toString() == "success")
+        {
+            QJsonArray players = jsonObj["data"].toArray();
+            QString selectedCountry = ui->player_dropdown->currentText();
+
+            ui->player_dropdown->setEnabled(true);
+            ui->tableWidget->clearContents();
+            ui->tableWidget->setRowCount(0);
+
+            for (const QJsonValue& playerVal : players)
+            {
+                QJsonObject playerObj = playerVal.toObject();
+
+                if (playerObj["country"].toString() == selectedCountry)
+                {
+                    QString id = playerObj["id"].toString();
+                    QString name = playerObj["name"].toString();
+
+                    QNetworkRequest infoRequest(QUrl(QString("https://api.cricapi.com/v1/players_info?apikey=593bc6a5-36b3-44f1-bd5a-b53770645324&offset=0&id=%1").arg(id)));
+                    networkManager->get(infoRequest);
+
+                    int row = ui->tableWidget->rowCount();
+                    ui->tableWidget->insertRow(row);
+                    ui->tableWidget->setItem(row, 0, new QTableWidgetItem(name));
+                }
+            }
+        }
+    }
+    reply->deleteLater();
+}
+
+void Players::handlePlayerInfoResponse(QNetworkReply* reply)
+{
+    if (reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray response = reply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+        QJsonObject jsonObj = jsonDoc.object();
+
+        if (jsonObj["status"].toString() == "success")
+        {
+            QJsonObject playerData = jsonObj["data"].toObject();
+            QString name = playerData["name"].toString();
+            QString role = playerData["role"].toString();
+            QString battingStyle = playerData["battingStyle"].toString();
+            QString bowlingStyle = playerData["bowlingStyle"].toString();
+            QString dob = playerData["dateOfBirth"].toString();
+
+            for (int row = 0; row < ui->tableWidget->rowCount(); ++row)
+            {
+                if (ui->tableWidget->item(row, 0)->text() == name)
+                {
+                    ui->tableWidget->setItem(row, 1, new QTableWidgetItem(role));
+                    ui->tableWidget->setItem(row, 2, new QTableWidgetItem(battingStyle));
+                    ui->tableWidget->setItem(row, 3, new QTableWidgetItem(bowlingStyle));
+                    ui->tableWidget->setItem(row, 4, new QTableWidgetItem(dob));
+                    break;
+                }
+            }
+        }
+    }
+    reply->deleteLater();
 }
 
 Players::~Players()
 {
     delete ui;
-}
-
-// Slot to handle team selection
-void Players::onTeamSelected(int index)
-{
-    if (index == 0) {
-        // If "--- Select Team ---" is selected, clear the label
-        ui->players_label->setText("");
-        return;
-    }
-
-    // Map teams to their players
-    QMap<QString, QStringList> teamPlayers = {
-        {"Pakistan", {"Babar Azam", "Shaheen Afridi", "Shadab Khan"}},
-        {"India", {"Virat Kohli", "Rohit Sharma", "Jasprit Bumrah"}},
-        {"Bangladesh", {"Shakib Al Hasan", "Mushfiqur Rahim", "Tamim Iqbal"}},
-        {"England", {"Joe Root", "Ben Stokes", "Jofra Archer"}},
-        {"New Zealand", {"Kane Williamson", "Trent Boult", "Ross Taylor"}},
-        {"Australia", {"Steve Smith", "David Warner", "Pat Cummins"}},
-        {"South Africa", {"Quinton de Kock", "Kagiso Rabada", "David Miller"}},
-        {"Sri Lanka", {"Angelo Mathews", "Kusal Perera", "Lasith Malinga"}},
-        {"West Indies", {"Chris Gayle", "Kieron Pollard", "Jason Holder"}}
-    };
-
-    // Get the selected team name
-    QString selectedTeam = ui->players_dropdown->currentText();
-
-    // Fetch players for the selected team
-    QStringList players = teamPlayers.value(selectedTeam);
-
-    // Update the label with the list of players
-    ui->players_label->setText(players.join("\n"));
 }

@@ -2,8 +2,11 @@
 #define PLAYERS_H
 
 #include <QDialog>
-#include <QMap>
+#include <QComboBox>
 #include <QStringList>
+#include <QTableWidget>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 namespace Ui {
 class Players;
@@ -18,10 +21,14 @@ public:
     ~Players();
 
 private slots:
-    void onTeamSelected(int index);
+    void populateCountries();
+    void onCountrySelected(const QString& country);
+    void handlePlayerDataResponse(QNetworkReply* reply);
+    void handlePlayerInfoResponse(QNetworkReply* reply);
 
 private:
     Ui::Players *ui;
+    QNetworkAccessManager* networkManager;
 };
 
 #endif // PLAYERS_H
