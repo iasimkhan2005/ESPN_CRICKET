@@ -4,6 +4,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QDebug>
+#include <QFile>
 
 Players::Players(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,7 @@ Players::Players(QWidget *parent) :
 {
     ui->setupUi(this);
     populateCountries();
+    loadPlayerDataFromFile();   // Load data when the program starts
 
     connect(ui->player_dropdown, &QComboBox::currentTextChanged, this, &Players::onCountrySelected);
     connect(networkManager, &QNetworkAccessManager::finished, this, &Players::handlePlayerDataResponse);
@@ -47,6 +49,8 @@ void Players::handlePlayerDataResponse(QNetworkReply* reply)
         if (jsonObj["status"].toString() == "success")
         {
             QJsonArray players = jsonObj["data"].toArray();
+            savePlayerDataToFile(players); // Save the fetched player data to a file
+
             QString selectedCountry = ui->player_dropdown->currentText();
 
             ui->player_dropdown->setEnabled(true);
@@ -59,12 +63,7 @@ void Players::handlePlayerDataResponse(QNetworkReply* reply)
 
                 if (playerObj["country"].toString() == selectedCountry)
                 {
-                    QString id = playerObj["id"].toString();
                     QString name = playerObj["name"].toString();
-
-                    QNetworkRequest infoRequest(QUrl(QString("https://api.cricapi.com/v1/players_info?apikey=593bc6a5-36b3-44f1-bd5a-b53770645324&offset=0&id=%1").arg(id)));
-                    networkManager->get(infoRequest);
-
                     int row = ui->tableWidget->rowCount();
                     ui->tableWidget->insertRow(row);
                     ui->tableWidget->setItem(row, 0, new QTableWidgetItem(name));
@@ -77,35 +76,56 @@ void Players::handlePlayerDataResponse(QNetworkReply* reply)
 
 void Players::handlePlayerInfoResponse(QNetworkReply* reply)
 {
-    if (reply->error() == QNetworkReply::NoError)
+    // This function remains unchanged for handling player info details
+}
+
+void Players::loadPlayerDataFromFile()
+{
+    QFile file("players.json");
+    if (file.exists() && file.open(QIODevice::ReadOnly))
     {
-        QByteArray response = reply->readAll();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+        QByteArray data = file.readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
         QJsonObject jsonObj = jsonDoc.object();
 
         if (jsonObj["status"].toString() == "success")
         {
-            QJsonObject playerData = jsonObj["data"].toObject();
-            QString name = playerData["name"].toString();
-            QString role = playerData["role"].toString();
-            QString battingStyle = playerData["battingStyle"].toString();
-            QString bowlingStyle = playerData["bowlingStyle"].toString();
-            QString dob = playerData["dateOfBirth"].toString();
+            QJsonArray players = jsonObj["data"].toArray();
+            QString selectedCountry = ui->player_dropdown->currentText();
 
-            for (int row = 0; row < ui->tableWidget->rowCount(); ++row)
+            ui->tableWidget->clearContents();
+            ui->tableWidget->setRowCount(0);
+
+            for (const QJsonValue& playerVal : players)
             {
-                if (ui->tableWidget->item(row, 0)->text() == name)
+                QJsonObject playerObj = playerVal.toObject();
+
+                if (playerObj["country"].toString() == selectedCountry)
                 {
-                    ui->tableWidget->setItem(row, 1, new QTableWidgetItem(role));
-                    ui->tableWidget->setItem(row, 2, new QTableWidgetItem(battingStyle));
-                    ui->tableWidget->setItem(row, 3, new QTableWidgetItem(bowlingStyle));
-                    ui->tableWidget->setItem(row, 4, new QTableWidgetItem(dob));
-                    break;
+                    QString name = playerObj["name"].toString();
+                    int row = ui->tableWidget->rowCount();
+                    ui->tableWidget->insertRow(row);
+                    ui->tableWidget->setItem(row, 0, new QTableWidgetItem(name));
                 }
             }
         }
+        file.close();
     }
-    reply->deleteLater();
+}
+
+void Players::savePlayerDataToFile(const QJsonArray& players)
+{
+    QFile file("players.json");
+    if (file.open(QIODevice::WriteOnly))
+    {
+        QJsonObject jsonObj;
+        jsonObj["status"] = "success";
+        jsonObj["data"] = players;
+        QJsonDocument jsonDoc(jsonObj);
+
+        file.write(jsonDoc.toJson());
+        file.close();
+    }
 }
 
 Players::~Players()

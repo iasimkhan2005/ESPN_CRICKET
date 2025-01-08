@@ -7,6 +7,10 @@
 #include <QTableWidget>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 namespace Ui {
 class Players;
@@ -25,6 +29,8 @@ private slots:
     void onCountrySelected(const QString& country);
     void handlePlayerDataResponse(QNetworkReply* reply);
     void handlePlayerInfoResponse(QNetworkReply* reply);
+    void loadPlayerDataFromFile();   // New function to load player data from a file
+    void savePlayerDataToFile(const QJsonArray& players);  // New function to save player data
 
 private:
     Ui::Players *ui;
