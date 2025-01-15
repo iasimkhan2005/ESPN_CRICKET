@@ -1,0 +1,371 @@
+[
+    {
+        "Name": "Babar Azam",
+        "Age": 29,
+        "Role": "Batsman",
+        "Country": "Pakistan",
+        "Jersey_Number": 56,
+        "ODI_total_score": 4500,
+        "T20_total_score": 1700
+    },
+    {
+        "Name": "Shaheen Afridi",
+        "Age": 23,
+        "Role": "Bowler",
+        "Country": "Pakistan",
+        "Jersey_Number": 10,
+        "Total_ODI_wickets": 180,
+        "Total_T20_wickets": 50
+    },
+    {
+        "Name": "Fakhar Zaman",
+        "Age": 33,
+        "Role": "Batsman",
+        "Country": "Pakistan",
+        "Jersey_Number": 12,
+        "ODI_total_score": 3500,
+        "T20_total_score": 1200
+    },
+    {
+        "Name": "Shadab Khan",
+        "Age": 26,
+        "Role": "Bowler",
+        "Country": "Pakistan",
+        "Jersey_Number": 23,
+        "Total_ODI_wickets": 80,
+        "Total_T20_wickets": 40
+    },
+    {
+        "Name": "Mohammad Rizwan",
+        "Age": 31,
+        "Role": "Batsman",
+        "Country": "Pakistan",
+        "Jersey_Number": 14,
+        "ODI_total_score": 3500,
+        "T20_total_score": 1600
+    },
+    {
+        "Name": "Haris Rauf",
+        "Age": 30,
+        "Role": "Bowler",
+        "Country": "Pakistan",
+        "Jersey_Number": 17,
+        "Total_ODI_wickets": 65,
+        "Total_T20_wickets": 55
+    },
+    {
+        "Name": "Imam-ul-Haq",
+        "Age": 28,
+        "Role": "Batsman",
+        "Country": "Pakistan",
+        "Jersey_Number": 9,
+        "ODI_total_score": 4000,
+        "T20_total_score": 1200
+    },
+    {
+        "Name": "Mohammad Nawaz",
+        "Age": 29,
+        "Role": "Bowler",
+        "Country": "Pakistan",
+        "Jersey_Number": 18,
+        "Total_ODI_wickets": 70,
+        "Total_T20_wickets": 40
+    },
+    {
+        "Name": "Shoaib Malik",
+        "Age": 42,
+        "Role": "Batsman",
+        "Country": "Pakistan",
+        "Jersey_Number": 6,
+        "ODI_total_score": 7500,
+        "T20_total_score": 2200
+    },
+    {
+        "Name": "Usman Qadir",
+        "Age": 30,
+        "Role": "Bowler",
+        "Country": "Pakistan",
+        "Jersey_Number": 44,
+        "Total_ODI_wickets": 50,
+        "Total_T20_wickets": 35
+    },
+    {
+        "Name": "Mohammad Amir",
+        "Age": 32,
+        "Role": "Bowler",
+        "Country": "Pakistan",
+        "Jersey_Number": 14,
+        "Total_ODI_wickets": 180,
+        "Total_T20_wickets": 60
+    },
+    {
+        "Name": "Virat Kohli",
+        "Age": 35,
+        "Role": "Batsman",
+        "Country": "India",
+        "Jersey_Number": 18,
+        "ODI_total_score": 12000,
+        "T20_total_score": 3000
+    },
+    {
+        "Name": "Jasprit Bumrah",
+        "Age": 29,
+        "Role": "Bowler",
+        "Country": "India",
+        "Jersey_Number": 93,
+        "Total_ODI_wickets": 150,
+        "Total_T20_wickets": 60
+    },
+    {
+        "Name": "Rohit Sharma",
+        "Age": 36,
+        "Role": "Batsman",
+        "Country": "India",
+        "Jersey_Number": 45,
+        "ODI_total_score": 9000,
+        "T20_total_score": 2400
+    },
+    {
+        "Name": "Yuzvendra Chahal",
+        "Age": 33,
+        "Role": "Bowler",
+        "Country": "India",
+        "Jersey_Number": 3,
+        "Total_ODI_wickets": 120,
+        "Total_T20_wickets": 80
+    },
+    {
+        "Name": "Shikhar Dhawan",
+        "Age": 38,
+        "Role": "Batsman",
+        "Country": "India",
+        "Jersey_Number": 25,
+        "ODI_total_score": 6500,
+        "T20_total_score": 2100
+    },
+    {
+        "Name": "Hardik Pandya",
+        "Age": 30,
+        "Role": "Bowler",
+        "Country": "India",
+        "Jersey_Number": 33,
+        "Total_ODI_wickets": 70,
+        "Total_T20_wickets": 50
+    },
+    {
+        "Name": "KL Rahul",
+        "Age": 31,
+        "Role": "Batsman",
+        "Country": "India",
+        "Jersey_Number": 1,
+        "ODI_total_score": 4500,
+        "T20_total_score": 1300
+    },
+    {
+        "Name": "Ravindra Jadeja",
+        "Age": 35,
+        "Role": "Bowler",
+        "Country": "India",
+        "Jersey_Number": 8,
+        "Total_ODI_wickets": 150,
+        "Total_T20_wickets": 70
+    },
+    {
+        "Name": "Axar Patel",
+        "Age": 29,
+        "Role": "Bowler",
+        "Country": "India",
+        "Jersey_Number": 22,
+        "Total_ODI_wickets": 50,
+        "Total_T20_wickets": 40
+    },
+    {
+        "Name": "Ishant Sharma",
+        "Age": 35,
+        "Role": "Bowler",
+        "Country": "India",
+        "Jersey_Number": 26,
+        "Total_ODI_wickets": 250,
+        "Total_T20_wickets": 80
+    },
+    {
+        "Name": "Joe Root",
+        "Age": 33,
+        "Role": "Batsman",
+        "Country": "England",
+        "Jersey_Number": 66,
+        "ODI_total_score": 6500,
+        "T20_total_score": 1700
+    },
+    {
+        "Name": "Jofra Archer",
+        "Age": 29,
+        "Role": "Bowler",
+        "Country": "England",
+        "Jersey_Number": 22,
+        "Total_ODI_wickets": 100,
+        "Total_T20_wickets": 45
+    },
+    {
+        "Name": "Ben Stokes",
+        "Age": 33,
+        "Role": "Batsman",
+        "Country": "England",
+        "Jersey_Number": 55,
+        "ODI_total_score": 5000,
+        "T20_total_score": 1800
+    },
+    {
+        "Name": "Adil Rashid",
+        "Age": 35,
+        "Role": "Bowler",
+        "Country": "England",
+        "Jersey_Number": 16,
+        "Total_ODI_wickets": 120,
+        "Total_T20_wickets": 60
+    },
+    {
+        "Name": "Eoin Morgan",
+        "Age": 38,
+        "Role": "Batsman",
+        "Country": "England",
+        "Jersey_Number": 7,
+        "ODI_total_score": 7000,
+        "T20_total_score": 2100
+    },
+    {
+        "Name": "Moeen Ali",
+        "Age": 37,
+        "Role": "Bowler",
+        "Country": "England",
+        "Jersey_Number": 28,
+        "Total_ODI_wickets": 90,
+        "Total_T20_wickets": 45
+    },
+    {
+        "Name": "Jos Buttler",
+        "Age": 33,
+        "Role": "Batsman",
+        "Country": "England",
+        "Jersey_Number": 63,
+        "ODI_total_score": 5000,
+        "T20_total_score": 2400
+    },
+    {
+        "Name": "Sam Curran",
+        "Age": 26,
+        "Role": "Bowler",
+        "Country": "England",
+        "Jersey_Number": 19,
+        "Total_ODI_wickets": 70,
+        "Total_T20_wickets": 30
+    },
+    {
+        "Name": "Chris Woakes",
+        "Age": 34,
+        "Role": "Bowler",
+        "Country": "England",
+        "Jersey_Number": 15,
+        "Total_ODI_wickets": 130,
+        "Total_T20_wickets": 50
+    },
+    {
+        "Name": "David Willey",
+        "Age": 34,
+        "Role": "Bowler",
+        "Country": "England",
+        "Jersey_Number": 18,
+        "Total_ODI_wickets": 90,
+        "Total_T20_wickets": 40
+    },
+    {
+        "Name": "David Warner",
+        "Age": 37,
+        "Role": "Batsman",
+        "Country": "Australia",
+        "Jersey_Number": 31,
+        "ODI_total_score": 8500,
+        "T20_total_score": 2500
+    },
+    {
+        "Name": "Mitchell Starc",
+        "Age": 33,
+        "Role": "Bowler",
+        "Country": "Australia",
+        "Jersey_Number": 56,
+        "Total_ODI_wickets": 180,
+        "Total_T20_wickets": 65
+    },
+    {
+        "Name": "Steve Smith",
+        "Age": 35,
+        "Role": "Batsman",
+        "Country": "Australia",
+        "Jersey_Number": 49,
+        "ODI_total_score": 7500,
+        "T20_total_score": 2200
+    },
+    {
+        "Name": "Pat Cummins",
+        "Age": 31,
+        "Role": "Bowler",
+        "Country": "Australia",
+        "Jersey_Number": 33,
+        "Total_ODI_wickets": 160,
+        "Total_T20_wickets": 60
+    },
+    {
+        "Name": "Glenn Maxwell",
+        "Age": 36,
+        "Role": "Batsman",
+        "Country": "Australia",
+        "Jersey_Number": 23,
+        "ODI_total_score": 5500,
+        "T20_total_score": 2400
+    },
+    {
+        "Name": "Josh Hazlewood",
+        "Age": 33,
+        "Role": "Bowler",
+        "Country": "Australia",
+        "Jersey_Number": 7,
+        "Total_ODI_wickets": 150,
+        "Total_T20_wickets": 60
+    },
+    {
+        "Name": "Aaron Finch",
+        "Age": 37,
+        "Role": "Batsman",
+        "Country": "Australia",
+        "Jersey_Number": 5,
+        "ODI_total_score": 7000,
+        "T20_total_score": 2200
+    },
+    {
+        "Name": "Marcus Stoinis",
+        "Age": 34,
+        "Role": "Bowler",
+        "Country": "Australia",
+        "Jersey_Number": 55,
+        "Total_ODI_wickets": 70,
+        "Total_T20_wickets": 50
+    },
+    {
+        "Name": "Kane Richardson",
+        "Age": 33,
+        "Role": "Bowler",
+        "Country": "Australia",
+        "Jersey_Number": 53,
+        "Total_ODI_wickets": 80,
+        "Total_T20_wickets": 40
+    },
+    {
+        "Name": "Alex Carey",
+        "Age": 33,
+        "Role": "Batsman",
+        "Country": "Australia",
+        "Jersey_Number": 13,
+        "ODI_total_score": 2500,
+        "T20_total_score": 1200
+    }
+]

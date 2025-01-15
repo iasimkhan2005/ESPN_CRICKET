@@ -29,7 +29,7 @@
     </size>
    </property>
    <property name="placeholderText">
-    <string>Select Team</string>
+    <string>Select Country</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
@@ -42,17 +42,24 @@
     </rect>
    </property>
    <property name="columnCount">
-    <number>5</number>
+    <number>6</number>
    </property>
-   <property name="horizontalHeaderLabels">
+   <property name="horizontalHeaderLabels" stdset="0">
     <stringlist>
      <string>Name</string>
      <string>Role</string>
-     <string>Batting Style</string>
-     <string>Bowling Style</string>
-     <string>Date of Birth</string>
+     <string>Age</string>
+     <string>Jersey Number</string>
+     <string>ODI/T20 Score</string>
+     <string>Wickets</string>
     </stringlist>
    </property>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
   </widget>
  </widget>
  <resources/>
