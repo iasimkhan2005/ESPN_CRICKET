@@ -1,3 +1,4 @@
+// players.cpp
 #include "players.h"
 #include "ui_players.h"
 #include <QJsonDocument>
@@ -7,11 +8,12 @@
 
 Players::Players(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Players)
+    ui(new Ui::Players),
+    head(nullptr)  // Initialize the linked list as empty
 {
     ui->setupUi(this);
     populateCountries();
-    populatePlayerData();  // Load data into playersData when the program starts
+    populatePlayerData();  // Load data into linked list when the program starts
 
     connect(ui->player_dropdown, &QComboBox::currentTextChanged, this, &Players::onCountrySelected);
 }
@@ -27,23 +29,18 @@ void Players::onCountrySelected(const QString& country)
     ui->tableWidget->clearContents();
     ui->tableWidget->setRowCount(0);
 
-    // Filter the players data based on the selected country and display it in the table
-    for (const QJsonValue& playerVal : playersData)
+    // Display the filtered data from the linked list
+    PlayerNode* currentNode = head;
+    while (currentNode != nullptr)
     {
-        QJsonObject playerObj = playerVal.toObject();
-
-        if (playerObj["Country"].toString() == country)
+        if (currentNode->player.country == country)
         {
-            QString name = playerObj["Name"].toString();
-            QString role = playerObj["Role"].toString();
-            int age = playerObj["Age"].toInt();
-            int jerseyNumber = playerObj["Jersey Number"].toInt();
-            QString score = (playerObj.contains("ODI total score") ? QString::number(playerObj["ODI total score"].toInt()) : "N/A") +
-                            "/" +
-                            (playerObj.contains("T20 total score") ? QString::number(playerObj["T20 total score"].toInt()) : "N/A");
-            QString wickets = (playerObj.contains("Total ODI wickets") ? QString::number(playerObj["Total ODI wickets"].toInt()) : "N/A") +
-                              "/" +
-                              (playerObj.contains("Total T20 wickets") ? QString::number(playerObj["Total T20 wickets"].toInt()) : "N/A");
+            QString name = currentNode->player.name;
+            QString role = currentNode->player.role;
+            int age = currentNode->player.age;
+            int jerseyNumber = currentNode->player.jerseyNumber;
+            QString score = QString::number(currentNode->player.odiScore) + "/" + QString::number(currentNode->player.t20Score);
+            QString wickets = QString::number(currentNode->player.odiWickets) + "/" + QString::number(currentNode->player.t20Wickets);
 
             int row = ui->tableWidget->rowCount();
             ui->tableWidget->insertRow(row);
@@ -54,15 +51,15 @@ void Players::onCountrySelected(const QString& country)
             ui->tableWidget->setItem(row, 4, new QTableWidgetItem(score));
             ui->tableWidget->setItem(row, 5, new QTableWidgetItem(wickets));
         }
+        currentNode = currentNode->next;
     }
 }
 
 void Players::populatePlayerData()
 {
-    // Full player data as QJsonArray
     QString playerData = R"(
     [
-        {"Name": "Babar Azam", "Age": 29, "Role": "Batsman", "Country": "Pakistan", "Jersey Number": 56, "ODI total score": 4500, "T20 total score": 1700},
+{"Name": "Babar Azam", "Age": 29, "Role": "Batsman", "Country": "Pakistan", "Jersey Number": 56, "ODI total score": 4500, "T20 total score": 1700},
         {"Name": "Shaheen Afridi", "Age": 23, "Role": "Bowler", "Country": "Pakistan", "Jersey Number": 10, "Total ODI wickets": 180, "Total T20 wickets": 50},
         {"Name": "Fakhar Zaman", "Age": 33, "Role": "Batsman", "Country": "Pakistan", "Jersey Number": 12, "ODI total score": 3500, "T20 total score": 1200},
         {"Name": "Shadab Khan", "Age": 26, "Role": "Bowler", "Country": "Pakistan", "Jersey Number": 23, "Total ODI wickets": 80, "Total T20 wickets": 40},
@@ -110,11 +107,52 @@ void Players::populatePlayerData()
     )";
 
     QJsonDocument doc = QJsonDocument::fromJson(playerData.toUtf8());
-    playersData = doc.array();
+    QJsonArray playersArray = doc.array();
+
+    // Insert the player data into the linked list
+    for (const QJsonValue& playerVal : playersArray)
+    {
+        QJsonObject playerObj = playerVal.toObject();
+
+        Player player;
+        player.name = playerObj["Name"].toString();
+        player.age = playerObj["Age"].toInt();
+        player.role = playerObj["Role"].toString();
+        player.country = playerObj["Country"].toString();
+        player.jerseyNumber = playerObj["Jersey Number"].toInt();
+        player.odiScore = playerObj.contains("ODI total score") ? playerObj["ODI total score"].toInt() : 0;
+        player.t20Score = playerObj.contains("T20 total score") ? playerObj["T20 total score"].toInt() : 0;
+        player.odiWickets = playerObj.contains("Total ODI wickets") ? playerObj["Total ODI wickets"].toInt() : 0;
+        player.t20Wickets = playerObj.contains("Total T20 wickets") ? playerObj["Total T20 wickets"].toInt() : 0;
+
+        // Create a new node and insert it at the end of the list
+        PlayerNode* newNode = new PlayerNode(player);
+        if (head == nullptr) {
+            head = newNode;  // If the list is empty, the new node is the head
+        } else {
+            PlayerNode* currentNode = head;
+            while (currentNode->next != nullptr) {
+                currentNode = currentNode->next;  // Traverse to the end
+            }
+            currentNode->next = newNode;  // Insert at the end
+        }
+    }
 }
 
+void Players::clearLinkedList()
+{
+    PlayerNode* currentNode = head;
+    while (currentNode != nullptr)
+    {
+        PlayerNode* nextNode = currentNode->next;
+        delete currentNode;
+        currentNode = nextNode;
+    }
+    head = nullptr;  // Reset the list
+}
 
 Players::~Players()
 {
+    clearLinkedList();
     delete ui;
 }

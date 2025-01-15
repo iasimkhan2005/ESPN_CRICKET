@@ -1,3 +1,4 @@
+// players.h
 #ifndef PLAYERS_H
 #define PLAYERS_H
 
@@ -10,6 +11,26 @@
 namespace Ui {
 class Players;
 }
+
+struct Player {
+    QString name;
+    int age;
+    QString role;
+    QString country;
+    int jerseyNumber;
+    int odiScore;
+    int t20Score;
+    int odiWickets;
+    int t20Wickets;
+};
+
+class PlayerNode {
+public:
+    Player player;
+    PlayerNode* next;
+
+    PlayerNode(const Player& p) : player(p), next(nullptr) {}
+};
 
 class Players : public QDialog
 {
@@ -25,8 +46,11 @@ private slots:
 
 private:
     Ui::Players *ui;
-    QJsonArray playersData;  // Store player data in memory
+    PlayerNode* head;  // Head of the linked list
+
     void populatePlayerData();
+    void displayPlayersData(PlayerNode* head);
+    void clearLinkedList();
 };
 
 #endif // PLAYERS_H
