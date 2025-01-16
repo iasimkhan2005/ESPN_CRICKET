@@ -22,7 +22,8 @@ private slots:
     void onTeamSelected(const QString& teamName);
 private:
     Ui::ChampionTrophy *ui;
-    tournamentScreen* tournament; // Pointer to the tournament instance
+    tournamentScreen* tournament;
+
 };
 
 #endif // CHAMPIONTROPHY_H

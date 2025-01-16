@@ -195,9 +195,34 @@ background-color: rgb(134, 134, 134);</string>
      </rect>
     </property>
    </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>110</y>
+      <width>561</width>
+      <height>261</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="refreshButton">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>80</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
    <zorder>UpperFrame_2</zorder>
    <zorder>UpperFrame</zorder>
    <zorder>view</zorder>
+   <zorder>listWidget</zorder>
+   <zorder>refreshButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

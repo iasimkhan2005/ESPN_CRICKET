@@ -10,19 +10,24 @@ using namespace std;
 tournamentScreen::tournamentScreen(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::tournamentScreen)
-{
-    ui->setupUi(this);
+    {
+        ui->setupUi(this);
 
-    connect(ui->championTrophy,&QPushButton::clicked, this, &tournamentScreen::showSchedule);
-}
-
-void tournamentScreen::addTeam(const string& team) {
-    if (teamMatches.find(team) == teamMatches.end()) {
-        teamMatches[team] = {};
+        connect(ui->championTrophy,&QPushButton::clicked, this, &tournamentScreen::showSchedule);
     }
-}
 
-void tournamentScreen::addMatch(const string& team1, const string& team2, const string& dateTime, const string& stadium) {
+void tournamentScreen::addTeam(const string& team)
+{
+
+     if (teamMatches.find(team) == teamMatches.end())
+         {
+             teamMatches[team] = {};
+         }
+ }
+
+void tournamentScreen::addMatch(const string& team1, const string& team2, const string& dateTime, const string& stadium)
+{
+
     Match match;
     match.team1 = team1;
     match.team2 = team2;
@@ -31,23 +36,30 @@ void tournamentScreen::addMatch(const string& team1, const string& team2, const 
 
     teamMatches[team1].push_back(match);
     teamMatches[team2].push_back(match);
+
 }
 
-vector<Match> tournamentScreen::getOpponents(const string& team) const {
+vector<Match> tournamentScreen::getOpponents(const string& team) const
+{
     return teamMatches.at(team);
 }
 
-vector<string> tournamentScreen::getAllTeams() const {
+vector<string> tournamentScreen::getAllTeams() const
+{
     set<string> uniqueTeams;
-    for (const auto& teamMatchesPair : teamMatches) {
+
+    for (const auto& teamMatchesPair : teamMatches)
+    {
         uniqueTeams.insert(teamMatchesPair.first);
     }
 
     vector<string> teams(uniqueTeams.begin(), uniqueTeams.end());
+
     return teams;
 }
 
-void tournamentScreen::showSchedule() {
+void tournamentScreen::showSchedule()
+{
     // Add Teams
     addTeam("Pakistan");
     addTeam("India");
