@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Players</class>
+ <widget class="QDialog" name="Players">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>721</width>
+    <height>389</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Player Cards</string>
+  </property>
+  <widget class="QComboBox" name="player_dropdown">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>20</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="placeholderText">
+    <string>Select Country</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>681</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <property name="horizontalHeaderLabels" stdset="0">
+    <stringlist>
+     <string>Name</string>
+     <string>Role</string>
+     <string>Age</string>
+     <string>Jersey Number</string>
+     <string>ODI/T20 Score</string>
+     <string>Wickets</string>
+    </stringlist>
+   </property>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

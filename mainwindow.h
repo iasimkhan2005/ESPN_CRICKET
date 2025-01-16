@@ -14,6 +14,7 @@
 #include<queue>
 #include<vector>
 
+
 using namespace std;
 
 
@@ -57,6 +58,12 @@ public:
     ~MainWindow();
 
 private slots:
+
+    void onTournamentButtonClicked();
+   void showTournamentsScreen();
+    //void showICCRankingScreen();
+    void showPlayerCardsScreen();
+    //void showMatchScheduleScreen();
 
     void showTournamentsScreen();
 
